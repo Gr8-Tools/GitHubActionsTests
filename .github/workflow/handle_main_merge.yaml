@@ -1,0 +1,20 @@
+name: Rebase to main_huawei
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  sync-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      
+      - name: Merge main -> main_huawei
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          target_branch: uat
+          github_token: ${{ github.token }}
+          message: 'Auto merge by git hub actions'
